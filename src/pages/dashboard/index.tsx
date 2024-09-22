@@ -37,6 +37,7 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_BASE_URL)
     fetchAllMyProjects()
   }, [])
 

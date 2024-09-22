@@ -37,6 +37,12 @@ const useTask = (id: string) => {
     )
   }
 
+  const sendEmails = async () => {
+    sendMessage(
+      JSON.stringify({ type: 'task', operation: 'success', payload: { id } }),
+    )
+  }
+
   const addComment = async () => {
     const { _id: userId } = (await store.getStorageItem('user')) as {
       _id: string
@@ -75,11 +81,14 @@ const useTask = (id: string) => {
         setTask(response)
         if (operation === 'update') {
           setOpenModal(false)
+          sendEmails();
         }
         if (operation === 'update') {
           setComment('')
+          sendEmails()
         }
         if (operation === 'delete') {
+          sendEmails()
           router.back()
         }
       }
